@@ -10,7 +10,36 @@ const Update = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.name.value;
-        console.log(name,email);
+        const updatedUser ={name,email}
+        console.log(updatedUser);
+
+        // fetch(`http://localhost:5000/users/${loadedUser._id}`,{
+        //     method : 'PUT',
+        //     headers : {
+        //         'content-type':'application/json'
+        //     },
+        //     body: JSON.stringify(updatedUser)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        // })
+        fetch(`http://localhost:5000/users/${loadedUser._id}`,{
+            method :"PUT",
+            headers : {
+                "content-type": "application/json"
+            },
+            body : JSON.stringify(updatedUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount>0){
+                alert('user modified successfully');
+            }
+        })
+
+
     }
 
 
